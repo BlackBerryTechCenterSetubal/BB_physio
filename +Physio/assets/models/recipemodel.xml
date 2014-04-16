@@ -1,0 +1,5 @@
+<root>
+    <recipeitem title="Registo"            image="../images/items/pear_peach.png"     file="input.qml"/>
+    <recipeitem title="Exercicios"         image="../images/items/peach.png"          file="Image.qml"/>
+    <recipeitem title="Glossário"          image="../images/items/lasagna.png"        file="Nineslice.qml"/>
+</root>
