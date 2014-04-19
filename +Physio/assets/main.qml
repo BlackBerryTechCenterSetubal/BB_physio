@@ -57,7 +57,6 @@ Page {
                     errorMessage: "Invalid user"
                     onValidate: {
 
-                        //console.log("qq coisa" + dataModel.toString())
                         /* if (dataModel.email == email.text) {
                          * state = ValidationState.Valid;
                          * } else {
@@ -106,17 +105,7 @@ Page {
 
             title: qsTr("Retrieving Headers")
         },
-        /*  QTimer {
-         * id: timer
-         * interval: 1000
-         * onTimeout: {
-         * //netheaders.getRequest();
-         * }
-         * },*/
-        ArrayDataModel {
-            id: dataModel
 
-        },
         RequestHeaders {
             id: netheaders
             onComplete: {
@@ -124,9 +113,6 @@ Page {
                 progressIndicator.active = false;
                 progressIndicator.visible = false;
 
-                dataModel = info;
-
-                //  timer.stop();
             }
         },
         // Definition of the second Page, used to dynamically create the Page above.
@@ -135,21 +121,6 @@ Page {
             source: "Home.qml"
         },
 
-        DataSource {
-
-            id: dataSource
-
-            // Load the data from JSON
-            source: "http://ebusinesslab.esce.ips.pt/fisioDB/index.php/user/"
-            onDataLoaded: {
-                // After the data is loaded, clear any existing items in the data
-                // model and populate it with the new data
-                dataModel.clear();
-                dataModel.insert(data)
-            }
-            type: DataSourceType.Json
-            remote: true
-        }, // end of DataSource
         Sheet {
 
             id: menu
@@ -179,26 +150,40 @@ Page {
                             ListView {
                                 id: recipeList
                                 dataModel: XmlDataModel {
-                                    source: "models/recipemodel.xml"
+                                    source: "/models/recipemodel.xml"
                                 }
                                 listItemComponents: [
                                     ListItemComponent {
                                         type: "recipeitem"
                                         RecipeItem {
                                         }
+
                                     }
                                 ]
                                 onTriggered: {
                                     // When an item is selected, we push the recipe Page in the chosenItem file attribute.
                                     var chosenItem = dataModel.data(indexPath);
 
-                                    if (chosenItem.title == "Registo") {
+                                    if (chosenItem.title == "Registo")
                                         nav.push(registo.createObject());
-                                    }
+                                    if (chosenItem.title == "Exercicios")
+                                        nav.push(registo.createObject());
+                                    if (chosenItem.title == "")
+                                        nav.push(registo.createObject());
                                 }
 
                             }
                         }
+                        attachedObjects: [
+                            ComponentDefinition {
+                                id: about1
+                                source: "About.qml"
+                            },
+                            ComponentDefinition {
+                                id: registo
+                                source: "Input.qml"
+                            }
+                        ]
                         // ListView
                     } // Container
                     actions: [
@@ -220,20 +205,7 @@ Page {
 
                         }
                     ]
-                    attachedObjects: [
-                        ComponentDefinition {
-                            id: about1
-                            source: "About.qml"
-                        },
-                        ComponentDefinition {
-                            id: registo
-                            source: "Input.qml"
-                        },
-                        ComponentDefinition {
-                            id: cookbookMenu
-                            source: "CookbookMenu.qml"
-                        }
-                    ]
+
                     // Container
                 }
 
