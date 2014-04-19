@@ -1,4 +1,5 @@
-/* Copyright (c) 2012, 2013  BlackBerry Limited.
+/*
+ * Copyright (c) 2011-2013 BlackBerry Limited.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,29 +14,24 @@
  * limitations under the License.
  */
 
-#include <QtCore/QObject>
-#include <QtCore/QLocale>
-#include <QtCore/QTranslator>
-
 #include <bb/cascades/Application>
 
-#include "HttpSampleApp.hpp"
+#include <QLocale>
+#include <QTranslator>
+#include "applicationui.hpp"
 
-using ::bb::cascades::Application;
+#include <Qt/qdeclarativedebug.h>
 
-Q_DECL_EXPORT int main(int argc, char** argv)
+using namespace bb::cascades;
+
+Q_DECL_EXPORT int main(int argc, char **argv)
 {
     Application app(argc, argv);
 
-    QTranslator translator;
-    const QString locale_string = QLocale().name();
-    const QString filename = QString::fromLatin1("httptest_%1").arg(locale_string);
-    if (translator.load(filename, "app/native/qm"))
-    {
-        app.installTranslator(&translator);
-    }
+    // Create the Application UI object, this is where the main.qml file
+    // is loaded and the application scene is set.
+    new ApplicationUI(&app);
 
-    HttpSampleApp mainApp;
-
+    // Enter the application main event loop.
     return Application::exec();
 }

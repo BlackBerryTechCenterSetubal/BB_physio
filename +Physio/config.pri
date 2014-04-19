@@ -3,96 +3,34 @@ BASEDIR =  $$quote($$_PRO_FILE_PWD_)
 
 device {
     CONFIG(debug, debug|release) {
-        INCLUDEPATH +=  $$quote(${QNX_TARGET}/usr/include/cpp) \
-                 $$quote(${QNX_TARGET}/usr/include/qt4) \
-                 $$quote(${QNX_TARGET}/usr/include/cpp/embedded) \
-                 $$quote(${QNX_TARGET}/usr/include/cpp/c) \
-                 $$quote(${QNX_TARGET}/../target-override/usr/include) \
-                 $$quote(${QNX_TARGET}/usr/include/qt4/QtCore)
-
-        DEPENDPATH +=  $$quote(${QNX_TARGET}/usr/include/cpp) \
-                 $$quote(${QNX_TARGET}/usr/include/qt4) \
-                 $$quote(${QNX_TARGET}/usr/include/cpp/embedded) \
-                 $$quote(${QNX_TARGET}/usr/include/cpp/c) \
-                 $$quote(${QNX_TARGET}/../target-override/usr/include) \
-                 $$quote(${QNX_TARGET}/usr/include/qt4/QtCore)
-
-        SOURCES +=  $$quote($$BASEDIR/src/AppSettings.cpp) \
-                 $$quote($$BASEDIR/src/ExternalIP.cpp) \
-                 $$quote($$BASEDIR/src/HttpSampleApp.cpp) \
-                 $$quote($$BASEDIR/src/PostHttp.cpp) \
-                 $$quote($$BASEDIR/src/RequestHeaders.cpp) \
+        SOURCES +=  $$quote($$BASEDIR/src/applicationui.cpp) \
                  $$quote($$BASEDIR/src/main.cpp)
 
-        HEADERS +=  $$quote($$BASEDIR/src/AppSettings.hpp) \
-                 $$quote($$BASEDIR/src/ExternalIP.hpp) \
-                 $$quote($$BASEDIR/src/HttpSampleApp.hpp) \
-                 $$quote($$BASEDIR/src/PostHttp.hpp) \
-                 $$quote($$BASEDIR/src/RequestHeaders.hpp)
+        HEADERS +=  $$quote($$BASEDIR/src/applicationui.hpp)
     }
 
     CONFIG(release, debug|release) {
-        INCLUDEPATH +=  $$quote(${QNX_TARGET}/usr/include/cpp) \
-                 $$quote(${QNX_TARGET}/usr/include/qt4) \
-                 $$quote(${QNX_TARGET}/usr/include/cpp/embedded) \
-                 $$quote(${QNX_TARGET}/usr/include/cpp/c) \
-                 $$quote(${QNX_TARGET}/../target-override/usr/include) \
-                 $$quote(${QNX_TARGET}/usr/include/qt4/QtCore)
-
-        DEPENDPATH +=  $$quote(${QNX_TARGET}/usr/include/cpp) \
-                 $$quote(${QNX_TARGET}/usr/include/qt4) \
-                 $$quote(${QNX_TARGET}/usr/include/cpp/embedded) \
-                 $$quote(${QNX_TARGET}/usr/include/cpp/c) \
-                 $$quote(${QNX_TARGET}/../target-override/usr/include) \
-                 $$quote(${QNX_TARGET}/usr/include/qt4/QtCore)
-
-        SOURCES +=  $$quote($$BASEDIR/src/AppSettings.cpp) \
-                 $$quote($$BASEDIR/src/ExternalIP.cpp) \
-                 $$quote($$BASEDIR/src/HttpSampleApp.cpp) \
-                 $$quote($$BASEDIR/src/PostHttp.cpp) \
-                 $$quote($$BASEDIR/src/RequestHeaders.cpp) \
+        SOURCES +=  $$quote($$BASEDIR/src/applicationui.cpp) \
                  $$quote($$BASEDIR/src/main.cpp)
 
-        HEADERS +=  $$quote($$BASEDIR/src/AppSettings.hpp) \
-                 $$quote($$BASEDIR/src/ExternalIP.hpp) \
-                 $$quote($$BASEDIR/src/HttpSampleApp.hpp) \
-                 $$quote($$BASEDIR/src/PostHttp.hpp) \
-                 $$quote($$BASEDIR/src/RequestHeaders.hpp)
+        HEADERS +=  $$quote($$BASEDIR/src/applicationui.hpp)
     }
 }
 
 simulator {
     CONFIG(debug, debug|release) {
-        INCLUDEPATH +=  $$quote(${QNX_TARGET}/usr/include/cpp) \
-                 $$quote(${QNX_TARGET}/usr/include/qt4) \
-                 $$quote(${QNX_TARGET}/usr/include/cpp/embedded) \
-                 $$quote(${QNX_TARGET}/usr/include/cpp/c) \
-                 $$quote(${QNX_TARGET}/../target-override/usr/include) \
-                 $$quote(${QNX_TARGET}/usr/include/qt4/QtCore)
-
-        DEPENDPATH +=  $$quote(${QNX_TARGET}/usr/include/cpp) \
-                 $$quote(${QNX_TARGET}/usr/include/qt4) \
-                 $$quote(${QNX_TARGET}/usr/include/cpp/embedded) \
-                 $$quote(${QNX_TARGET}/usr/include/cpp/c) \
-                 $$quote(${QNX_TARGET}/../target-override/usr/include) \
-                 $$quote(${QNX_TARGET}/usr/include/qt4/QtCore)
-
-        SOURCES +=  $$quote($$BASEDIR/src/AppSettings.cpp) \
-                 $$quote($$BASEDIR/src/ExternalIP.cpp) \
-                 $$quote($$BASEDIR/src/HttpSampleApp.cpp) \
-                 $$quote($$BASEDIR/src/PostHttp.cpp) \
-                 $$quote($$BASEDIR/src/RequestHeaders.cpp) \
+        SOURCES +=  $$quote($$BASEDIR/src/applicationui.cpp) \
                  $$quote($$BASEDIR/src/main.cpp)
 
-        HEADERS +=  $$quote($$BASEDIR/src/AppSettings.hpp) \
-                 $$quote($$BASEDIR/src/ExternalIP.hpp) \
-                 $$quote($$BASEDIR/src/HttpSampleApp.hpp) \
-                 $$quote($$BASEDIR/src/PostHttp.hpp) \
-                 $$quote($$BASEDIR/src/RequestHeaders.hpp)
+        HEADERS +=  $$quote($$BASEDIR/src/applicationui.hpp)
     }
 }
 
 INCLUDEPATH +=  $$quote($$BASEDIR/src)
+
+CONFIG += precompile_header
+
+PRECOMPILED_HEADER =  $$quote($$BASEDIR/precompiled.h)
 
 lupdate_inclusion {
     SOURCES +=  $$quote($$BASEDIR/../src/*.c) \

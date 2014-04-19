@@ -1,4 +1,4 @@
-QMAKE_TARGET  = httptest
+QMAKE_TARGET  = BB_Physio
 LUPDATE       = $(QNX_HOST)/usr/bin/lupdate
 LRELEASE      = $(QNX_HOST)/usr/bin/lrelease
 

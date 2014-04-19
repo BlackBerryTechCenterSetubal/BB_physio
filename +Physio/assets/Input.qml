@@ -18,11 +18,11 @@ import "Common"
 Page {
 
     Container {
-        background: Color.create("#b9000000")
+        background: background.imagePaint
         layout: StackLayout {
         }
         Label {
-            text: "PhisioPlus"
+            text: "+ Physio"
             textFit.maxFontSizeValue: 16.0
             textFit.minFontSizeValue: 18.0
             horizontalAlignment: HorizontalAlignment.Center
@@ -47,10 +47,8 @@ Page {
                 maxWidth: 700.0
                 accessibility.name: "email"
                 hintText: "Tensão max"
-
             }
             Label {
-
                 text: "Tensão MIN"
                 textFit.minFontSizeValue: 12.0
                 textStyle.color: Color.White
@@ -63,6 +61,12 @@ Page {
 
             }
         }
-
     }
+    attachedObjects: [
+        ImagePaintDefinition {
+            id: background
+            repeatPattern: RepeatPattern.XY
+            imageSource: "asset:///images/login_background.png"
+        }
+    ]
 }

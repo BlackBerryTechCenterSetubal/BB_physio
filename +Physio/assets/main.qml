@@ -16,19 +16,19 @@
 import bb.cascades 1.2
 import bb.data 1.0
 import "Common"
-import Network.RequestHeaders 1.0
 import "controls"
 
-import Network.PostHttp 1.0
+
 
 Page {
 
     id: main
     Container {
 
-        background: Color.create("#b9000000")
+        verticalAlignment: VerticalAlignment.Fill
         layout: StackLayout {
         }
+        background: back.imagePaint
         Label {
             text: "+ Physio"
             textFit.maxFontSizeValue: 16.0
@@ -40,9 +40,9 @@ Page {
         Container {
             topMargin: 200.0
             horizontalAlignment: HorizontalAlignment.Center
+            layout: StackLayout {
 
-            minHeight: 900.0
-            maxHeight: 900.0
+            }
 
             TextField {
                 id: email
@@ -57,46 +57,51 @@ Page {
                     errorMessage: "Invalid user"
                     onValidate: {
 
-                        /* if (dataModel.email == email.text) {
-                         * state = ValidationState.Valid;
-                         * } else {
-                         * state = ValidationState.Invalid;
-                         * }*/
                     }
                 }
             }
-
             TextField {
                 id: pass
-
                 topMargin: 40.0
                 maxWidth: 700.0
                 accessibility.name: "password"
                 hintText: "password"
 
+                validator: Validator {
+                    id: validatePass
+                    state: ValidationState.Invalid
+                    errorMessage: "Invalid user"
+                    onValidate: {
+
+                    }
+                }
             }
             Button {
-
                 text: "LOGIN"
                 topMargin: 60.0
                 minWidth: 700.0
-
                 onClicked: {
-                    //  netheaders.setRequest()
-
                     menu.open()
                 }
             }
-
             Button {
                 text: "RESGISTER"
                 topMargin: 30.0
                 minWidth: 700.0
-
+                onClicked: {
+                    menu.open()
+                }
             }
+
         }
+
     }
     attachedObjects: [
+        ImagePaintDefinition {
+            id: back
+            repeatPattern: RepeatPattern.Fill
+            imageSource: "asset:///images/login_background.png"
+        },
         NetworkActivity {
             id: progressIndicator
 
@@ -105,22 +110,6 @@ Page {
 
             title: qsTr("Retrieving Headers")
         },
-
-        RequestHeaders {
-            id: netheaders
-            onComplete: {
-
-                progressIndicator.active = false;
-                progressIndicator.visible = false;
-
-            }
-        },
-        // Definition of the second Page, used to dynamically create the Page above.
-        ComponentDefinition {
-            id: home
-            source: "Home.qml"
-        },
-
         Sheet {
 
             id: menu
@@ -130,12 +119,13 @@ Page {
                 Page {
                     id: home1
                     Container {
-                        background: Color.create("#b9000000")
+
+                        background: background.imagePaint 
                         layout: StackLayout {
                         }
 
                         Label {
-                            text: "PhisioPlus"
+                            text: "+Physio"
                             textFit.maxFontSizeValue: 16.0
                             textFit.minFontSizeValue: 18.0
                             horizontalAlignment: HorizontalAlignment.Center
@@ -185,7 +175,14 @@ Page {
                             }
                         ]
                         // ListView
-                    } // Container
+                    }
+                    attachedObjects: [
+                        ImagePaintDefinition {
+                            id: background
+                            repeatPattern: RepeatPattern.XY
+                            imageSource: "asset:///images/login_background.png"
+                        }
+                    ]                   
                     actions: [
                         ActionItem {
                             title: "Logout"
@@ -202,7 +199,7 @@ Page {
                                 nav.push(about1.createObject())
 
                             }
-
+                            imageSource: "asset:///images/ic_info.png"
                         }
                     ]
 
