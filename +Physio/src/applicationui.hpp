@@ -19,13 +19,11 @@
 
 #include <QObject>
 
-namespace bb
-{
-    namespace cascades
-    {
-        class Application;
-        class LocaleHandler;
-    }
+namespace bb {
+namespace cascades {
+class Application;
+class LocaleHandler;
+}
 }
 
 class QTranslator;
@@ -36,17 +34,25 @@ class QTranslator;
  *
  */
 
-class ApplicationUI : public QObject
-{
-    Q_OBJECT
+class ApplicationUI: public QObject {
+	Q_OBJECT
 public:
-    ApplicationUI(bb::cascades::Application *app);
-    virtual ~ApplicationUI() { }
+	ApplicationUI(bb::cascades::Application *app);
+
+	//FUNÇÃO INVOKABLE PELO QML
+	Q_INVOKABLE
+	double jsonReader(int number, int price);
+	Q_INVOKABLE
+	bool loginData(bool data);
+
+
+	virtual ~ApplicationUI() {
+	}
 private slots:
-    void onSystemLanguageChanged();
+	void onSystemLanguageChanged();
 private:
-    QTranslator* m_pTranslator;
-    bb::cascades::LocaleHandler* m_pLocaleHandler;
+	QTranslator* m_pTranslator;
+	bb::cascades::LocaleHandler* m_pLocaleHandler;
 };
 
 #endif /* ApplicationUI_HPP_ */

@@ -18,197 +18,123 @@ import bb.data 1.0
 import "Common"
 import "controls"
 
-
-
-Page {
-
+NavigationPane {
     id: main
-    Container {
-
-        verticalAlignment: VerticalAlignment.Fill
-        layout: StackLayout {
-        }
-        background: back.imagePaint
-        Label {
-            text: "+ Physio"
-            textFit.maxFontSizeValue: 16.0
-            textFit.minFontSizeValue: 18.0
-            horizontalAlignment: HorizontalAlignment.Center
-            verticalAlignment: VerticalAlignment.Center
-            textStyle.color: Color.White
-        }
+    Menu.definition: MenuDefinition {
+        // Specify the actions that should be included in the menu
+        actions: [
+            ActionItem {
+                title: "Logout"
+                imageSource: "asset:///icons/ic_cancel.png"
+                onTriggered: {
+                    login.open()
+                }
+            }
+        ] // end of actions list
+    } // end of MenuDefinition
+    Page {
+        id: home
         Container {
-            topMargin: 200.0
-            horizontalAlignment: HorizontalAlignment.Center
-            layout: StackLayout {
-
-            }
-
-            TextField {
-                id: email
-
-                topMargin: 40.0
-                maxWidth: 700.0
-                accessibility.name: "email"
-                hintText: "email"
-                validator: Validator {
-                    id: validateuser
-                    state: ValidationState.Invalid
-                    errorMessage: "Invalid user"
-                    onValidate: {
-
-                    }
-                }
-            }
-            TextField {
-                id: pass
-                topMargin: 40.0
-                maxWidth: 700.0
-                accessibility.name: "password"
-                hintText: "password"
-
-                validator: Validator {
-                    id: validatePass
-                    state: ValidationState.Invalid
-                    errorMessage: "Invalid user"
-                    onValidate: {
-
-                    }
-                }
-            }
-            Button {
-                text: "LOGIN"
-                topMargin: 60.0
-                minWidth: 700.0
-                onClicked: {
-                    menu.open()
-                }
-            }
-            Button {
-                text: "RESGISTER"
-                topMargin: 30.0
-                minWidth: 700.0
-                onClicked: {
-                    menu.open()
-                }
-            }
-
-        }
-
-    }
-    attachedObjects: [
-        ImagePaintDefinition {
-            id: back
-            repeatPattern: RepeatPattern.Fill
-            imageSource: "asset:///images/login_background.png"
-        },
-        NetworkActivity {
-            id: progressIndicator
-
-            horizontalAlignment: HorizontalAlignment.Fill
             verticalAlignment: VerticalAlignment.Fill
-
-            title: qsTr("Retrieving Headers")
-        },
-        Sheet {
-
-            id: menu
-            peekEnabled: false
-            NavigationPane {
-                id: nav
-                Page {
-                    id: home1
-                    Container {
-
-                        background: background.imagePaint 
-                        layout: StackLayout {
+            layout: StackLayout {
+            }
+            background: Color.create("#3498DB")
+            horizontalAlignment: HorizontalAlignment.Center
+            topPadding: 30.0
+            ImageView {
+                imageSource: "asset:///icons/logo-physio-plan.png"
+                horizontalAlignment: HorizontalAlignment.Center
+                preferredWidth: 500.0
+                preferredHeight: 500.0
+            }
+            // A Container for the list is padded at the top and bottom to make room for decorations.
+            Container {
+                background: Color.create("#D0D3D4")
+                topMargin: 60.0
+                preferredWidth: 660.0
+                preferredHeight: 520.0
+                topPadding: 60.0
+                bottomPadding: topPadding
+                horizontalAlignment: HorizontalAlignment.Center
+                Container {
+                    background: Color.create("#2980B9")
+                    onTouch: {
+                        if (event.isUp()) {
+                            main.push(registo.createObject());
                         }
-
-                        Label {
-                            text: "+Physio"
-                            textFit.maxFontSizeValue: 16.0
-                            textFit.minFontSizeValue: 18.0
-                            horizontalAlignment: HorizontalAlignment.Center
-                            verticalAlignment: VerticalAlignment.Center
-                            textStyle.color: Color.White
-                        }
-
-                        // A Container for the list is padded at the top and bottom to make room for decorations.
-                        Container {
-                            topPadding: 15
-                            bottomPadding: topPadding
-                            ListView {
-                                id: recipeList
-                                dataModel: XmlDataModel {
-                                    source: "/models/recipemodel.xml"
-                                }
-                                listItemComponents: [
-                                    ListItemComponent {
-                                        type: "recipeitem"
-                                        RecipeItem {
-                                        }
-
-                                    }
-                                ]
-                                onTriggered: {
-                                    // When an item is selected, we push the recipe Page in the chosenItem file attribute.
-                                    var chosenItem = dataModel.data(indexPath);
-
-                                    if (chosenItem.title == "Registo")
-                                        nav.push(registo.createObject());
-                                    if (chosenItem.title == "Exercicios")
-                                        nav.push(registo.createObject());
-                                    if (chosenItem.title == "")
-                                        nav.push(registo.createObject());
-                                }
-
-                            }
-                        }
-                        attachedObjects: [
-                            ComponentDefinition {
-                                id: about1
-                                source: "About.qml"
-                            },
-                            ComponentDefinition {
-                                id: registo
-                                source: "Input.qml"
-                            }
-                        ]
-                        // ListView
                     }
-                    attachedObjects: [
-                        ImagePaintDefinition {
-                            id: background
-                            repeatPattern: RepeatPattern.XY
-                            imageSource: "asset:///images/login_background.png"
-                        }
-                    ]                   
-                    actions: [
-                        ActionItem {
-                            title: "Logout"
-                            onTriggered: {
-                                menu.close();
-                            }
-                        },
-                        ActionItem {
-                            title: "Options"
-                        },
-                        ActionItem {
-                            title: "About"
-                            onTriggered: {
-                                nav.push(about1.createObject())
-
-                            }
-                            imageSource: "asset:///images/ic_info.png"
-                        }
-                    ]
-
-                    // Container
+                    Label {
+                        text: "Register"
+                        horizontalAlignment: HorizontalAlignment.Center
+                        textStyle.color: Color.White
+                        textStyle.fontSize: FontSize.Large
+                    }
+                    preferredWidth: 600.0
+                    preferredHeight: 120.0
+                    topPadding: 20.0
+                    horizontalAlignment: HorizontalAlignment.Center
+                    topMargin: 30.0
                 }
+                Container {
+                    background: Color.create("#2980B9")
+                    onTouch: {
+                        if (event.isUp()) {
 
+                        }
+                    }
+                    Label {
+                        text: "Exercise"
+                        horizontalAlignment: HorizontalAlignment.Center
+                        textStyle.color: Color.White
+                        textStyle.fontSize: FontSize.Large
+
+                    }
+                    preferredWidth: 600.0
+                    preferredHeight: 120.0
+                    topPadding: 20.0
+                    horizontalAlignment: HorizontalAlignment.Center
+                    topMargin: 50.0
+                }
+                Container {
+                    background: Color.create("#2980B9")
+                    onTouch: {
+                        if (event.isUp()) {
+                            // Handle click here.
+                        }
+                    }
+                    Label {
+                        text: "Glossary"
+                        horizontalAlignment: HorizontalAlignment.Center
+                        textStyle.color: Color.White
+                        textStyle.fontSize: FontSize.Large
+
+                    }
+                    preferredWidth: 600.0
+                    preferredHeight: 120.0
+                    topPadding: 20.0
+                    horizontalAlignment: HorizontalAlignment.Center
+                    topMargin: 50.0
+                }
             }
         }
-
-    ]
-
+        attachedObjects: [
+            ComponentDefinition {
+                id: about1
+                source: "About.qml"
+            },
+            ComponentDefinition {
+                id: registo
+                source: "Input.qml"
+            },
+            Login {
+                id: login
+            }
+        ]
+        // ListView
+    }
+    onCreationCompleted: {
+        if (_app.loginData(false) == false)
+            login.open()
+    }
+    // Container
 }

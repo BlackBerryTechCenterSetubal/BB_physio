@@ -95,6 +95,9 @@ lupdate_inclusion {
              $$quote($$BASEDIR/../assets/fonts/SourceCodePro_Fonts/TTF/*.qml) \
              $$quote($$BASEDIR/../assets/fonts/SourceCodePro_Fonts/TTF/*.js) \
              $$quote($$BASEDIR/../assets/fonts/SourceCodePro_Fonts/TTF/*.qs) \
+             $$quote($$BASEDIR/../assets/icons/*.qml) \
+             $$quote($$BASEDIR/../assets/icons/*.js) \
+             $$quote($$BASEDIR/../assets/icons/*.qs) \
              $$quote($$BASEDIR/../assets/images/*.qml) \
              $$quote($$BASEDIR/../assets/images/*.js) \
              $$quote($$BASEDIR/../assets/images/*.qs) \

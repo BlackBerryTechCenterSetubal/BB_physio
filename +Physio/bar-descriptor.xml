@@ -55,20 +55,20 @@
     <author>Example Inc.</author>
     <configuration name="Device-Debug">
        <platformArchitecture>armle-v7</platformArchitecture>
-       <asset path="arm/o.le-v7-g/BB_Physio" entry="true" type="Qnx/Elf">BB_Physio</asset>
+       <asset path="arm/o.le-v7-g/+Physio" entry="true" type="Qnx/Elf">+Physio</asset>
     </configuration>
     <configuration name="Device-Release">
        <entryPointType>Qnx/Cascades</entryPointType>
        <platformArchitecture>armle-v7</platformArchitecture>
-       <asset path="arm/o.le-v7/BB_Physio.so" entry="true" type="Qnx/Elf">BB_Physio.so</asset>
+       <asset path="arm/o.le-v7/+Physio.so" entry="true" type="Qnx/Elf">+Physio.so</asset>
     </configuration>
     <configuration name="Device-Profile">
        <platformArchitecture>armle-v7</platformArchitecture>
-       <asset path="arm-p/o.le-v7-g/BB_Physio" entry="true" type="Qnx/Elf">BB_Physio</asset>
+       <asset path="arm-p/o.le-v7-g/+Physio" entry="true" type="Qnx/Elf">+Physio</asset>
     </configuration>
     <configuration name="Simulator-Debug">
        <platformArchitecture>x86</platformArchitecture>
-       <asset path="x86/o-g/BB_Physio" entry="true" type="Qnx/Elf">BB_Physio</asset>
+       <asset path="x86/o-g/+Physio" entry="true" type="Qnx/Elf">+Physio</asset>
     </configuration>
 
     <!--  Unique author ID assigned by signing authority. Required if using debug tokens. -->
@@ -89,9 +89,6 @@
     <asset path="assets">assets</asset>
 
     <!-- Locale support -->
-    <asset path="translations" dest="qm">
-        <include name="*.qm"/>
-    </asset>
 
     <!-- Request permission to execute native code.  Required for native applications. -->
     <permission system="true">run_native</permission>

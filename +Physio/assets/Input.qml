@@ -17,56 +17,147 @@ import "Common"
 
 Page {
 
-    Container {
-        background: background.imagePaint
-        layout: StackLayout {
-        }
-        Label {
-            text: "+ Physio"
-            textFit.maxFontSizeValue: 16.0
-            textFit.minFontSizeValue: 18.0
-            horizontalAlignment: HorizontalAlignment.Center
-            verticalAlignment: VerticalAlignment.Center
-            textStyle.color: Color.White
-        }
+    ScrollView {
+
         Container {
-            topMargin: 200.0
+            background: Color.create("#84d0d3d4")
+            verticalAlignment: VerticalAlignment.Top
             horizontalAlignment: HorizontalAlignment.Center
+            preferredHeight: 1280.0
+            Container {
+                background: Color.create("#2980B9")
+                preferredWidth: 800.0
+                preferredHeight: 120.0
+                topPadding: 20.0
 
-            minHeight: 900.0
-            maxHeight: 900.0
-            Label {
+                horizontalAlignment: HorizontalAlignment.Center
+                Label {
+                    text: "Register"
+                    textStyle.color: Color.White
+                    horizontalAlignment: HorizontalAlignment.Center
+                    textStyle.fontSize: FontSize.XLarge
+                }
 
-                text: "Tensão MAX"
-                textFit.minFontSizeValue: 12.0
-                textStyle.color: Color.White
             }
-            TextField {
+            Container {
+                background: Color.create("#fff3c812")
+                preferredWidth: 800.0
+                preferredHeight: 100.0
 
+                horizontalAlignment: HorizontalAlignment.Center
+
+                ImageView {
+                    imageSource: "asset:///icons/seta-vermelha.png"
+                    preferredHeight: 80.0
+                    preferredWidth: 80.0
+                    translationX: 190.0
+                }
+
+                Label {
+                    text: "Batimento Cardiaco - Pressão Arterial"
+                    textStyle.color: Color.White
+                    horizontalAlignment: HorizontalAlignment.Center
+                    textStyle.fontSize: FontSize.Large
+                    translationY: -20.0
+
+                }
+
+            }
+
+            TextArea {
+                text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore"
+                editable: false
+                horizontalAlignment: HorizontalAlignment.Center
+            }
+            Container {
+                background: Color.create("#D0D3D4")
+                topMargin: 100.0
+                preferredWidth: 680.0
+                preferredHeight: 142.0
+                topPadding: 10.0
+                layout: DockLayout {
+                }
+                translationX: 50.0
+                horizontalAlignment: HorizontalAlignment.Left
+                TextField {
+                    textFit.minFontSizeValue: 10.0
+                    preferredWidth: 500.0
+                    translationX: 20.0
+                    translationY: 20.0
+                }
+                ImageView {
+                    imageSource: "asset:///icons/batimento-cardiaco.png"
+                    horizontalAlignment: HorizontalAlignment.Right
+                    translationX: -20.0
+
+                }
+            }
+            Container {
+                background: Color.create("#D0D3D4")
                 topMargin: 40.0
-                maxWidth: 700.0
-                accessibility.name: "email"
-                hintText: "Tensão max"
-            }
-            Label {
-                text: "Tensão MIN"
-                textFit.minFontSizeValue: 12.0
-                textStyle.color: Color.White
-            }
-            TextField {
-                topMargin: 40.0
-                maxWidth: 700.0
-                accessibility.name: "password"
-                hintText: ""
+                preferredWidth: 680.0
+                preferredHeight: 142.0
+                topPadding: 10.0
+                layout: DockLayout {
+                }
+                translationX: 50.0
+                TextField {
+                    textFit.minFontSizeValue: 10.0
+                    preferredWidth: 500.0
+                    translationX: 20.0
+                    translationY: 20.0
+                }
+                ImageView {
+                    imageSource: "asset:///icons/pressao-alta.png"
+                    horizontalAlignment: HorizontalAlignment.Right
+                    translationX: -20.0
 
+                }
             }
+            Container {
+                background: Color.create("#D0D3D4")
+                topMargin: 40.0
+                preferredWidth: 680.0
+                preferredHeight: 142.0
+                topPadding: 10.0
+                layout: DockLayout {
+                }
+                translationX: 50.0
+                TextField {
+                    textFit.minFontSizeValue: 10.0
+                    preferredWidth: 500.0
+                    translationX: 20.0
+                    translationY: 20.0
+                }
+                ImageView {
+                    imageSource: "asset:///icons/pressao-baixa.png"
+                    horizontalAlignment: HorizontalAlignment.Right
+                    translationX: -20.0
+
+                }
+            }
+            Container {
+                background: Color.create("#2980B9")
+                onTouch: {
+                    if (event.isUp()) {
+
+                    }
+                }
+                Label {
+                    text: "Ok"
+                    horizontalAlignment: HorizontalAlignment.Center
+                    textStyle.color: Color.White
+                    textStyle.fontSize: FontSize.Large
+
+                }
+                preferredWidth: 600.0
+                preferredHeight: 100.0
+                topPadding: 20.0
+                horizontalAlignment: HorizontalAlignment.Center
+                topMargin: 80.0
+            }
+
         }
+
     }
-    attachedObjects: [
-        ImagePaintDefinition {
-            id: background
-            repeatPattern: RepeatPattern.XY
-            imageSource: "asset:///images/login_background.png"
-        }
-    ]
 }

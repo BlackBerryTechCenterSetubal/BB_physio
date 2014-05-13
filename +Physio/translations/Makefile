@@ -1,4 +1,4 @@
-QMAKE_TARGET  = BB_Physio
+QMAKE_TARGET  = BB_physio
 LUPDATE       = $(QNX_HOST)/usr/bin/lupdate
 LRELEASE      = $(QNX_HOST)/usr/bin/lrelease
 
