@@ -43,7 +43,17 @@ public:
 	Q_INVOKABLE
 	double jsonReader(int number, int price);
 	Q_INVOKABLE
-	bool loginData(bool data);
+	bool getLoginState();
+	Q_INVOKABLE
+	void setName(QString dataName);
+	Q_INVOKABLE
+	QString getName();
+	Q_INVOKABLE
+		void setLoginState(bool dataLog);
+	Q_INVOKABLE
+		bool getFinish();
+	Q_INVOKABLE
+		void setFinish(bool state);
 
 
 	virtual ~ApplicationUI() {

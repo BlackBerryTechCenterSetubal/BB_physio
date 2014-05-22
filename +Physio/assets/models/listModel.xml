@@ -1,0 +1,5 @@
+<root>
+    <recipeitem title="Morning"            image="../icons/exercise.gif"     file=""/>
+    <recipeitem title="Afternoon"         image="../icons/exercise.gif"          file=""/>
+    <recipeitem title="Night"          image="../icons/exercise.gif"        file=""/>
+</root>

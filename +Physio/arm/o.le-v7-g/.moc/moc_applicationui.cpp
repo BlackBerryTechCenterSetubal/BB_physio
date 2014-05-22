@@ -22,7 +22,7 @@ static const uint qt_meta_data_ApplicationUI[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       3,   14, // methods
+       8,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -34,7 +34,12 @@ static const uint qt_meta_data_ApplicationUI[] = {
 
  // methods: signature, parameters, type, tag, flags
       61,   48,   41,   14, 0x02,
-      91,   86,   81,   14, 0x02,
+      86,   14,   81,   14, 0x02,
+     111,  102,   14,   14, 0x02,
+     136,   14,  128,   14, 0x02,
+     154,  146,   14,   14, 0x02,
+     174,   14,   81,   14, 0x02,
+     192,  186,   14,   14, 0x02,
 
        0        // eod
 };
@@ -42,7 +47,10 @@ static const uint qt_meta_data_ApplicationUI[] = {
 static const char qt_meta_stringdata_ApplicationUI[] = {
     "ApplicationUI\0\0onSystemLanguageChanged()\0"
     "double\0number,price\0jsonReader(int,int)\0"
-    "bool\0data\0loginData(bool)\0"
+    "bool\0getLoginState()\0dataName\0"
+    "setName(QString)\0QString\0getName()\0"
+    "dataLog\0setLoginState(bool)\0getFinish()\0"
+    "state\0setFinish(bool)\0"
 };
 
 void ApplicationUI::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -54,8 +62,15 @@ void ApplicationUI::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         case 0: _t->onSystemLanguageChanged(); break;
         case 1: { double _r = _t->jsonReader((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])));
             if (_a[0]) *reinterpret_cast< double*>(_a[0]) = _r; }  break;
-        case 2: { bool _r = _t->loginData((*reinterpret_cast< bool(*)>(_a[1])));
+        case 2: { bool _r = _t->getLoginState();
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
+        case 3: _t->setName((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 4: { QString _r = _t->getName();
+            if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = _r; }  break;
+        case 5: _t->setLoginState((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 6: { bool _r = _t->getFinish();
+            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
+        case 7: _t->setFinish((*reinterpret_cast< bool(*)>(_a[1]))); break;
         default: ;
         }
     }
@@ -93,9 +108,9 @@ int ApplicationUI::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 3)
+        if (_id < 8)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 3;
+        _id -= 8;
     }
     return _id;
 }

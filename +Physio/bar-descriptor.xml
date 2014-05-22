@@ -75,7 +75,8 @@
     <!-- <authorId>ABC1234YjsnUk235h</authorId> -->
 
     <initialWindow>
-        <autoOrients>true</autoOrients>
+        <aspectRatio>portrait</aspectRatio>
+        <autoOrients>false</autoOrients>
         <systemChrome>none</systemChrome>
         <transparent>false</transparent>
     </initialWindow>
@@ -87,11 +88,16 @@
 
     <asset path="icon.png">icon.png</asset>
     <asset path="assets">assets</asset>
+    <asset path="assets/icons/1.png">1.png</asset>
+    <asset path="assets/icons/2.gif">2.gif</asset>
+    <asset path="assets/icons/animationog.gif">animationog.gif</asset>
+    <asset path="assets/icons/logo-physio-plan.png">logo-physio-plan.png</asset>
 
     <!-- Locale support -->
 
     <!-- Request permission to execute native code.  Required for native applications. -->
     <permission system="true">run_native</permission>
+    <permission>access_internet</permission>
     <env var="LD_LIBRARY_PATH" value="app/native/lib:/usr/lib/qt4/lib"/>
 
 </qnx>

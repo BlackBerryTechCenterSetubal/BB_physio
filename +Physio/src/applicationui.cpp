@@ -21,9 +21,12 @@
 #include <bb/cascades/AbstractPane>
 #include <bb/cascades/LocaleHandler>
 #include <bb/data/JsonDataAccess>
+#include <QString>
 using namespace bb::cascades;
 
-
+QString name;
+bool login;
+bool finish = false;
 
 ApplicationUI::ApplicationUI(bb::cascades::Application *app) :
 		QObject(app) {
@@ -73,13 +76,35 @@ double ApplicationUI::jsonReader(int number, int price) {
 	return (subtotal + subtotal * TAX_rate);
 }
 
-bool ApplicationUI::loginData(bool data) {
+bool ApplicationUI::getLoginState() {
 
-	if (data == true)
+	if (login == true)
 		return true;
 	else
 		return false;
 
+}
+
+void ApplicationUI::setLoginState(bool dataLog) {
+	login = dataLog;
+}
+
+void ApplicationUI::setName(QString dataName) {
+	name = dataName;
+}
+
+QString ApplicationUI::getName() {
+
+	return name;
+}
+
+void ApplicationUI::setFinish(bool state) {
+	finish = state;
+}
+
+
+bool ApplicationUI::getFinish() {
+	return finish;
 }
 
 

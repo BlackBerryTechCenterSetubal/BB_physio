@@ -1,6 +1,8 @@
 import bb.cascades 1.2
 import bb.data 1.0
+
 Sheet {
+    id: login
     Page {
         id: log
         Container {
@@ -24,9 +26,8 @@ Sheet {
                 topMargin: 40.0
                 horizontalAlignment: HorizontalAlignment.Center
                 layout: StackLayout {
-
                 }
-                background: Color.create("#D0D3D4")
+                background: background.imagePaint
                 preferredWidth: 700.0
                 preferredHeight: 650.0
                 topPadding: 60.0
@@ -61,15 +62,16 @@ Sheet {
                     }
                     horizontalAlignment: HorizontalAlignment.Center
                 }
-
                 Container {
-                    background: Color.create("#2980B9")
+                    id: loginButton
+                    background: darkBlue.imagePaint
                     onTouch: {
+                        loginButton.background = Color.create("#ff2925b9")
                         if (event.isUp()) {
-                          login.close()
-                          console.log(_app.jsonReader(10, 10).toString())
-                          dataSource.load();
-                          myListView.itemType()
+                            loginButton.background = darkBlue.imagePaint
+                            console.log(_app.jsonReader(10, 10).toString())
+                            dataSource.load();
+                            myListView.itemType();
                         }
                     }
                     Label {
@@ -77,7 +79,6 @@ Sheet {
                         horizontalAlignment: HorizontalAlignment.Center
                         textStyle.color: Color.White
                         textStyle.fontSize: FontSize.Large
-
                     }
                     preferredWidth: 600.0
                     preferredHeight: 100.0
@@ -85,6 +86,13 @@ Sheet {
                     horizontalAlignment: HorizontalAlignment.Center
                     topMargin: 50.0
                 }
+                attachedObjects: [
+                    ImagePaintDefinition {
+                        id: darkBlue
+                        repeatPattern: RepeatPattern.XY
+                        imageSource: "asset:///icons/botao-azul-escuro.png"
+                    }
+                ]
                 Container {
                     ListView {
                         id: myListView
@@ -104,40 +112,51 @@ Sheet {
                         ]
                         function itemType(data, indexPath) {
                             if (data.name == email.text && data.password == pass.text) {
-                                login.close()
-                                console.log("OK")
-                                return "OK";
+                                //SET LOGIN STATE AND GRAB NAME
+                                _app.setName(email.text)
+                                _app.setLoginState(true)
+                                welcome.setText("WELCOME " + email.text)
+                                console.log("LOADING: " + _app.getName().toString())
+                                login.close();
                             } else {
                                 console.log("-------------LOGIN ERROR-------------" + email.text + data.name)
-                                return "FAIL";
                             }
                         }
                     }
-                
                 }
             }
         }
+    }
+    onClosed: {
+        email.text = ""
+        pass.text = ""
     }
     attachedObjects: [
         GroupDataModel {
             id: dataModel
             grouping: ItemGrouping.None
         },
+        Begin {
+            id: navigation
+            peekEnabled: false
+        },
         DataSource {
             id: dataSource
-            
             // Load the data from JSON
             source: "http://ebusinesslab.esce.ips.pt/fisioDB/index.php/user/name/" + email.text
-            
             onDataLoaded: {
                 // After the data is loaded, clear any existing items in the data
                 // model and populate it with the new data
                 dataModel.clear();
                 dataModel.insertList(data)
-            
             }
             type: DataSourceType.Json
             remote: true
+        },
+        ImagePaintDefinition {
+            id: background
+            repeatPattern: RepeatPattern.XY
+            imageSource: "asset:///icons/bg-round.png"
         }
     ]
 }

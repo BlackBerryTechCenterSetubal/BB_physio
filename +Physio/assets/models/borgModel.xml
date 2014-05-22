@@ -1,0 +1,7 @@
+<root>
+    <recipeitem title="Not Tired At All"            image="../icons/borg-1.gif"     file=""/>
+    <recipeitem title="A Litle Tired"         image="../icons/borg-2.gif"          file=""/>
+    <recipeitem title="Tired"          image="../icons/borg-3.gif"        file=""/>
+    <recipeitem title="Realy Tired"          image="../icons/borg-4.gif"        file=""/>
+    <recipeitem title="So Tired I Can't Go Anymore"          image="../icons/borg-5.gif"        file=""/>
+</root>
